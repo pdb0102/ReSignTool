@@ -1,17 +1,4 @@
-# ReSignTool
-Application to replace references and re-sign .Net assemblies.
-
-### Use this tool if you:
-* Want to change the key an assembly is signed with
-* Want to change a reference in an assembly to point to an assembly with a different version or signing key
-
-It is a command-line tool, and is configured via XML file.
-
-### Example Usage:
-`resigntool myconfig.xml`
-
-### Sample XML configuration File
-	<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resign>
 	<!-- This sample file switches the Newtonsoft.Json reference in the MS Azure assemblies to a different version and resigns them -->
 	<!-- List all signing keys to be used -->
@@ -33,4 +20,3 @@ It is a command-line tool, and is configured via XML file.
 		<dll path="c:\mydlls\Microsoft.Rest.ClientRuntime.dll" key="libraries" />
 	</sign>
 </resign>
-

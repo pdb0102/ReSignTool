@@ -1,0 +1,21 @@
+# Visual Studio files 
+*.vcxproj.user
+*.sdf
+*.opensdf
+*.csproj.user
+*.suo
+*.vshost.exe
+*.wixproj.user
+
+# Output Directories
+[Dd]ebug/
+[Rr]elease/
+[Oo]bj/
+[Bb]in/
+
+# Automatically Generated Sources
+*.vsmdi
+~*.docx
+~*.tmp
+
+packages/*
