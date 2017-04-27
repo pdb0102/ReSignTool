@@ -13,6 +13,7 @@ It is a command-line tool, and is configured via XML file.
 
 ### Sample XML configuration File
 This (real) example replaces the Newtonsoft.Json reference in MS Azure assemblies with your own (or newer) version of Newtonsoft. It results in versions of the MS assemblies signed with your own key.
+```
 	<?xml version="1.0" encoding="utf-8"?>
 	<resign>
 		<!-- This sample file switches the Newtonsoft.Json reference in the MS Azure assemblies to a different version and resigns them -->
@@ -33,4 +34,4 @@ This (real) example replaces the Newtonsoft.Json reference in MS Azure assemblie
 			<dll path="c:\mydlls\Microsoft.Rest.ClientRuntime.dll" key="libraries" />
 		</sign>
 	</resign>
-
+```
