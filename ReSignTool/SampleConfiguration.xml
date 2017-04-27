@@ -14,8 +14,6 @@
 	<sign outputdir="c:\mydlls\resigned" changedonly="true">
 		<dll path="c:\mydlls\Microsoft.Azure.KeyVault.dll" key="libraries" />
 		<dll path="c:\mydlls\Microsoft.Azure.KeyVault.WebKey.dll" key="libraries" />
-		<dll path="c:\mydlls\Microsoft.IdentityModel.Clients.ActiveDirectory.dll" key="libraries" />
-		<dll path="c:\mydlls\Microsoft.IdentityModel.Clients.ActiveDirectory.WindowsForms.dll" key="libraries" />
 		<dll path="c:\mydlls\Microsoft.Rest.ClientRuntime.Azure.dll" key="libraries" />
 		<dll path="c:\mydlls\Microsoft.Rest.ClientRuntime.dll" key="libraries" />
 	</sign>
