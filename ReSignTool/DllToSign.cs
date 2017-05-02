@@ -73,7 +73,7 @@ namespace ReSignTool {
 		public Version Version { get; set; }
 
 		private void GetInfo() {
-			module = ModuleDefinition.ReadModule(filename);
+			module = ModuleDefinition.ReadModule(filename, new ReaderParameters() { ReadingMode = ReadingMode.Immediate } );
 			Version = module.Assembly.Name.Version;
 			PublicKey = module.Assembly.Name.PublicKeyToken;
 		}

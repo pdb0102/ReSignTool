@@ -29,6 +29,7 @@ using System.Text;
 using System.Xml;
 
 using Mono.Cecil;
+using Mono.Collections.Generic;
 
 namespace ReSignTool {
 	public class ReSign {
@@ -77,7 +78,7 @@ namespace ReSignTool {
 				}
 
 				if (!ReadConfiguration(out error)) {
-					error = "Failed to read configuration: " + error;
+					error = "Processing configuration: " + error;
 					return false;
 				}
 
@@ -107,6 +108,7 @@ namespace ReSignTool {
 					}
 				}
 
+				// Fix up any attributes that might contain a reference to any changed assemblies
 				foreach (DllToSign module in signdlls) {
 					if (keys.ContainsKey(module.Key)) {
 						wp = new WriterParameters();
@@ -226,7 +228,7 @@ namespace ReSignTool {
 						error = "references/dll tag '" + reference.Name + "' references non-existing file '" + reference.Filename + "'";
 						return false;
 					}
-					references.Add(reference.Name, reference);
+					references.Add(Path.GetFileNameWithoutExtension(reference.Name), reference);
 				}
 
 				nodes = doc.SelectNodes("/resign/sign/dll");
