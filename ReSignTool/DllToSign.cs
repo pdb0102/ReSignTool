@@ -30,8 +30,10 @@ namespace ReSignTool {
 		private string key;
 		private string filename;
 		private ModuleDefinition module;
+		private ResignAssemblyResolver resolver;
 
-		public DllToSign() {
+		public DllToSign(ResignAssemblyResolver resolver) {
+			this.resolver = resolver;
 		}
 
 		public DllToSign(string key, string file) {
@@ -73,7 +75,7 @@ namespace ReSignTool {
 		public Version Version { get; set; }
 
 		private void GetInfo() {
-			module = ModuleDefinition.ReadModule(filename, new ReaderParameters() { ReadingMode = ReadingMode.Immediate } );
+			module = ModuleDefinition.ReadModule(filename, new ReaderParameters() { ReadingMode = ReadingMode.Immediate, AssemblyResolver = resolver } );
 			Version = module.Assembly.Name.Version;
 			PublicKey = module.Assembly.Name.PublicKeyToken;
 		}

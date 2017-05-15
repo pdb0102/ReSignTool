@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ResignAssemblyResolver.cs" />
     <Compile Include="DllToSign.cs" />
     <Compile Include="DllReference.cs" />
     <Compile Include="Program.cs" />

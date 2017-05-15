@@ -52,6 +52,13 @@ namespace ReSignTool {
 
 		public bool Verbose { get; set; }
 		public bool Debug { get; set; }
+		public AssemblyDefinition HaveReferenceAssembly(string name) {
+			if (references.ContainsKey(name)) {
+				return references[name].Module.Assembly;
+			}
+
+			return null;
+		}
 
 		public string ConfigurationFile {
 			get {
@@ -199,8 +206,10 @@ namespace ReSignTool {
 			SigningKey key;
 			DllReference reference;
 			DllToSign sign;
+			ResignAssemblyResolver resolver;
 
 			error = string.Empty;
+			resolver = new ResignAssemblyResolver(this);
 			try {
 				doc = new XmlDocument();
 				doc.Load(configuration_file);
@@ -233,7 +242,7 @@ namespace ReSignTool {
 
 				nodes = doc.SelectNodes("/resign/sign/dll");
 				foreach (XmlNode dll_node in nodes) {
-					sign = new DllToSign();
+					sign = new DllToSign(resolver);
 					sign.Filename = GetAttribute(dll_node, "path", string.Empty);
 					if (!File.Exists(sign.Filename)) {
 						error = "dll tag references non-existing path '" + sign.Filename + "'";
