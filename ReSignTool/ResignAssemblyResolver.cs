@@ -80,15 +80,5 @@ namespace ReSignTool {
 
 			cache[name] = assembly;
 		}
-
-		protected override void Dispose(bool disposing) {
-			foreach (var assembly in cache.Values) {
-				assembly.Dispose();
-			}
-
-			cache.Clear();
-
-			base.Dispose(disposing);
-		}
 	}
 }
