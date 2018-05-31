@@ -79,5 +79,9 @@ namespace ReSignTool {
 			Version = module.Assembly.Name.Version;
 			PublicKey = module.Assembly.Name.PublicKeyToken;
 		}
+
+		public void Refresh() {
+			GetInfo();
+		}
 	}
 }
