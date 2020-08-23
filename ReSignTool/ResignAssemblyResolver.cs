@@ -35,6 +35,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -62,6 +63,23 @@ namespace ReSignTool {
 
 			if (cache.TryGetValue(name.FullName, out assembly)) {
 				return assembly;
+			}
+
+			if (!string.IsNullOrEmpty(resign.ReferenceDir)) {
+				string path;
+
+				path = Path.Combine(resign.ReferenceDir, name.Name + ".dll");
+				if (File.Exists(path)) {
+					try {
+						assembly = AssemblyDefinition.ReadAssembly(path);
+						if (assembly != null) {
+							cache[name.FullName] = assembly;
+							return assembly;
+						}
+					} catch {
+
+					}
+				}
 			}
 
 			assembly = base.Resolve(name);

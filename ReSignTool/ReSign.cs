@@ -38,6 +38,7 @@ namespace ReSignTool {
 		private List<DllToSign> signdlls;
 		private bool only_sign_on_match;
 		private string output_dir;
+		private string reference_dir;
 		private string configuration_file;
 
 		public ReSign() {
@@ -67,6 +68,12 @@ namespace ReSignTool {
 
 			set {
 				configuration_file = value;
+			}
+		}
+
+		public string ReferenceDir {
+			get {
+				return reference_dir;
 			}
 		}
 
@@ -214,6 +221,12 @@ namespace ReSignTool {
 				doc = new XmlDocument();
 				doc.Load(configuration_file);
 				ns_mgr = new XmlNamespaceManager(doc.NameTable);
+
+				node = doc.SelectSingleNode("/resign/sign");
+				if (node != null) {
+					reference_dir = GetAttribute(node, "referencedir", string.Empty);
+				}
+
 				nodes = doc.SelectNodes("/resign/signingkey");
 				foreach(XmlNode key_node in nodes) {
 					key = new SigningKey();
@@ -260,7 +273,7 @@ namespace ReSignTool {
 				node = doc.SelectSingleNode("/resign/sign");
 				output_dir = GetAttribute(node, "outputdir", string.Empty);
 				only_sign_on_match = GetAttribute(node, "changedonly", true);
-				
+
 				return true;
 			} catch (Exception ex) {
 				error = ex.ToString();
